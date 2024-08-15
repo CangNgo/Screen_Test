@@ -14,6 +14,9 @@ public interface ITeacherService {
     List<Teacher> findAllTeacher();
 
     Teacher findTeacherById(Long id);
+
     List<Teacher> findByNameOrId(String findName);
+
     List<Teacher> findByDegree(int degree);
+
 }
