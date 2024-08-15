@@ -140,11 +140,28 @@ public class TeacherDAO implements ITeacherDAO {
         }
     }
 
-//    public static void main(String[] args) {
-//        TeacherDAO dao = new TeacherDAO();
-//        List<Teacher> teachers = dao.findByDegree(1);
-//        for (Teacher teacher : teachers) {
-//            System.out.println(teacher.getCodeTeacher());
-//        }
-//    }
+    @Override
+    public Teacher findTeacherByCodeName(String codeName) {
+        try {
+            EntityManager em = JpaUtils.getEntityManager();
+            em.getTransaction().begin();
+            TypedQuery<Teacher> query = em.createQuery("select t from Teacher t where t.codeTeacher = :codeName", Teacher.class);
+            query.setParameter("codeName", codeName);
+            List<Teacher> teachers = query.getResultList();
+            if(!teachers.isEmpty()){
+                return teachers.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        TeacherDAO dao = new TeacherDAO();
+        Teacher teacher = new Teacher();
+        teacher = dao.findTeacherByCodeName("lienntb");
+        System.out.println(teacher.getCodeTeacher());
+    }
 }

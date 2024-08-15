@@ -18,4 +18,6 @@ public interface ITeacherDAO {
     List<Teacher> findByNameOrId(String findNameOrId);
 
     List<Teacher> findByDegree(int degree);
+
+    Teacher findTeacherByCodeName(String codeName );
 }

@@ -39,6 +39,9 @@
                     <div class="mb-3">
                         <label class="form-label">Bằng cấp</label>
                         <select class="form-select" id="degree" name="degree" aria-label="Default select example">
+                            <c:if test="${not empty teacher.degreeId.degreeName}">
+                                <option selected value="${teacher.degreeId}">${teacher.degreeId.degreeName}</option>
+                            </c:if>
                             <c:forEach var="degree" items="${listDegree}">
                                 <option value="${degree.id}">${degree.degreeName}</option>
                             </c:forEach>
@@ -47,6 +50,9 @@
                     <div class="mb-3">
                         <label class="form-label">Hợp đồng</label>
                         <select class="form-select" id="contract" name="contract" aria-label="Default select example">
+                            <c:if test="${not empty teacher.contractId.contractName}">
+                                <option selected value="${teacher.contractId}">${teacher.contractId.contractName}</option>
+                            </c:if>
                             <c:forEach var="contract" items="${listContract}" >
                                 <option value="${contract.id}">${contract.contractName}</option>
                             </c:forEach>

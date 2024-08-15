@@ -35,6 +35,8 @@
                         <th>Mã</th>
                         <th>Họ tên</th>
                         <th>Lương</th>
+                        <th>Trình độ</th>
+                        <th>Hợp đồng</th>
                         <th>Ngày vào làm</th>
                         <th>Hình ảnh</th>
                         <th>Cập nhật</th>
@@ -45,6 +47,8 @@
                             <td>${item.codeTeacher}</td>
                             <td>${item.lastName} ${item.firstName}</td>
                             <td><fmt:formatNumber value="${item.salary}" pattern="#,###.00"/></td>
+                            <td>${item.degreeId.degreeName}</td>
+                            <td>${item.contractId.contractName}</td>
                             <td><fmt:formatDate value="${item.firstDayOfWork}" pattern="dd-MM-yyyy"/></td>
                             <td><img src="<c:url value="/template/web/img/${item.image}" />" alt="" class="img-table">
                             </td>

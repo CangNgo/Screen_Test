@@ -78,11 +78,17 @@ public class AddTeacher extends HttpServlet {
 
             }
             TeacherCreationRequest teacher = FormUtil.toModel(TeacherCreationRequest.class, request);
+
             if (teacher != null) {
                 teacher.setImage(fileName);
-                teacherService.createTeacher(teacher);
-                request.setAttribute("message", "Thêm mới giảng viên thành công");
-                request.setAttribute("alert", "primary");
+                String messageResult = teacherService.createTeacher(teacher);
+                if(messageResult.equals(teacher.getCodeTeacher())) {
+                    request.getSession().setAttribute("message", "Thêm mới giảng viên thành công");
+                    request.getSession().setAttribute("alert", "primary");
+                }else{
+                    request.getSession().setAttribute("message", messageResult);
+                    request.getSession().setAttribute("alert", "danger");
+                }
             }
         } else if (action != null && action.equals("update")) {
             //lấy codeTeach
