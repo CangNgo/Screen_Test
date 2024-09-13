@@ -1,5 +1,5 @@
-create database creen_test;
-use creen_test;
+create database creen_test_servlet;
+use creen_test_servlet;
 
 create table Degree
 (
