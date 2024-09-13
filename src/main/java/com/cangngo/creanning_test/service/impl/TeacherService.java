@@ -59,10 +59,7 @@ public class TeacherService implements ITeacherService {
 
     //codeTeacher
     public boolean checkCodeTeacher(String codeTeacher) {
-        if (codeTeacher == null || codeTeacher.isEmpty()) {
-            return false;
-        }
-        return true;
+        return codeTeacher == null || codeTeacher.isEmpty();
     }
 
     //check request
@@ -90,43 +87,28 @@ public class TeacherService implements ITeacherService {
 
     //lastName
     public boolean checkLastName(String lastName) {
-        if ( lastName == null || lastName.isEmpty()) {
-            return false;
-        }
-        return true;
+        return lastName == null || lastName.isEmpty();
     }
 
     //firstName
     public boolean checkFirstName(String firstName) {
-        if (firstName == null || firstName.isEmpty()) {
-            return false;
-        }
-        return true;
+     return  firstName == null || firstName.isEmpty();
     }
 
 
     //firstDayOfWork
     public boolean checkFirstDayOfWork(Date fristDayOfWork) {
-        if (fristDayOfWork == null) {
-            return false;
-        }
-        return true;
+      return fristDayOfWork == null;
     }
 
     //degree
     public boolean checkDegree(String degree) {
-        if (degree == null || degree.isEmpty()) {
-            return false;
-        }
-        return true;
+        return degree == null || degree.isEmpty();
     }
 
     //contract
     public boolean checkContract(String contract) {
-        if (contract == null || contract.isEmpty()) {
-            return false;
-        }
-        return true;
+        return contract == null || contract.isEmpty();
     }
 
 }

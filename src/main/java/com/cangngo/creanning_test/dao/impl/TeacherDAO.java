@@ -18,6 +18,7 @@ import java.util.List;
 public class TeacherDAO implements ITeacherDAO {
     IDegreeDAO degreeDAO;
     IContractDAO contractDAO;
+
     public TeacherDAO() {
         degreeDAO = new DegreeDAO();
         contractDAO = new ContractDAO();
@@ -97,7 +98,7 @@ public class TeacherDAO implements ITeacherDAO {
     @Override
     public List<Teacher> findByDegree(int degree) {
         List<Teacher> teachers = null;
-        if(degree !=0){
+        if (degree != 0) {
             try {
                 EntityManager em = JpaUtils.getEntityManager();
                 Degree dg = em.find(Degree.class, degree);
@@ -110,7 +111,7 @@ public class TeacherDAO implements ITeacherDAO {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }else {
+        } else {
             teachers = findAllTeachers();
         }
 
@@ -119,18 +120,18 @@ public class TeacherDAO implements ITeacherDAO {
 
     @Override
     public String updateTeacher(Long id, TeacherUpdateRequest request) {
-        EntityManager em = JpaUtils.getEntityManager();
-        Degree degree = em.find(Degree.class, request.getDegree());
-        Contract contract = em.find(Contract.class, request.getContract());
-        Teacher teacher = em.find(Teacher.class, id);
-        teacher.setLastName(request.getLastName());
-        teacher.setFirstName(request.getFirstName());
-        teacher.setImage(request.getImage());
-        teacher.setSalary(request.getSalary());
-        teacher.setFirstDayOfWork(request.getFirstDayOfWork());
-        teacher.setDegreeId(degree);
-        teacher.setContractId(contract);
         try {
+            EntityManager em = JpaUtils.getEntityManager();
+            Degree degree = em.find(Degree.class, request.getDegree());
+            Contract contract = em.find(Contract.class, request.getContract());
+            Teacher teacher = em.find(Teacher.class, id);
+            teacher.setLastName(request.getLastName());
+            teacher.setFirstName(request.getFirstName());
+            teacher.setImage(request.getImage());
+            teacher.setSalary(request.getSalary());
+            teacher.setFirstDayOfWork(request.getFirstDayOfWork());
+            teacher.setDegreeId(degree);
+            teacher.setContractId(contract);
             em.getTransaction().begin();
             em.merge(teacher);
             em.getTransaction().commit();
@@ -148,7 +149,7 @@ public class TeacherDAO implements ITeacherDAO {
             TypedQuery<Teacher> query = em.createQuery("select t from Teacher t where t.codeTeacher = :codeName", Teacher.class);
             query.setParameter("codeName", codeName);
             List<Teacher> teachers = query.getResultList();
-            if(!teachers.isEmpty()){
+            if (!teachers.isEmpty()) {
                 return teachers.get(0);
             }
         } catch (Exception e) {
